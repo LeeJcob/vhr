@@ -29,18 +29,26 @@ import java.util.UUID;
  */
 @Service
 public class EmployeeService {
+
     @Autowired
     EmployeeMapper employeeMapper;
+
     @Autowired
     RabbitTemplate rabbitTemplate;
+
     @Autowired
     MailSendLogService mailSendLogService;
+
     public final static Logger logger = LoggerFactory.getLogger(EmployeeService.class);
+
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+
     SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
+
     DecimalFormat decimalFormat = new DecimalFormat("##.00");
 
     public RespPageBean getEmployeeByPage(Integer page, Integer size, Employee employee, Date[] beginDateScope) {
+
         if (page != null && size != null) {
             page = (page - 1) * size;
         }
@@ -53,6 +61,7 @@ public class EmployeeService {
     }
 
     public Integer addEmp(Employee employee) {
+
         Date beginContract = employee.getBeginContract();
         Date endContract = employee.getEndContract();
         double month = (Double.parseDouble(yearFormat.format(endContract)) - Double.parseDouble(yearFormat.format(beginContract))) * 12 + (Double.parseDouble(monthFormat.format(endContract)) - Double.parseDouble(monthFormat.format(beginContract)));
@@ -76,22 +85,27 @@ public class EmployeeService {
     }
 
     public Integer maxWorkID() {
+
         return employeeMapper.maxWorkID();
     }
 
     public Integer deleteEmpByEid(Integer id) {
+
         return employeeMapper.deleteByPrimaryKey(id);
     }
 
     public Integer updateEmp(Employee employee) {
+
         return employeeMapper.updateByPrimaryKeySelective(employee);
     }
 
     public Integer addEmps(List<Employee> list) {
+
         return employeeMapper.addEmps(list);
     }
 
     public RespPageBean getEmployeeByPageWithSalary(Integer page, Integer size) {
+
         if (page != null && size != null) {
             page = (page - 1) * size;
         }
@@ -103,10 +117,12 @@ public class EmployeeService {
     }
 
     public Integer updateEmployeeSalaryById(Integer eid, Integer sid) {
+
         return employeeMapper.updateEmployeeSalaryById(eid, sid);
     }
 
     public Employee getEmployeeById(Integer empId) {
+
         return employeeMapper.getEmployeeById(empId);
     }
 }

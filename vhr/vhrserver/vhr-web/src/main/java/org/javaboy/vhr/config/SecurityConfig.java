@@ -7,7 +7,12 @@ import org.javaboy.vhr.service.HrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.*;
+import org.springframework.security.authentication.AccountExpiredException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.CredentialsExpiredException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,30 +39,37 @@ import java.io.PrintWriter;
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     HrService hrService;
+
     @Autowired
     CustomFilterInvocationSecurityMetadataSource customFilterInvocationSecurityMetadataSource;
+
     @Autowired
     CustomUrlDecisionManager customUrlDecisionManager;
 
     @Bean
     PasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
         auth.userDetailsService(hrService);
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
+
         web.ignoring().antMatchers("/css/**", "/js/**", "/index.html", "/img/**", "/fonts/**", "/favicon.ico", "/verifyCode");
     }
 
     @Bean
     LoginFilter loginFilter() throws Exception {
+
         LoginFilter loginFilter = new LoginFilter();
         loginFilter.setAuthenticationSuccessHandler((request, response, authentication) -> {
                     response.setContentType("application/json;charset=utf-8");
@@ -101,15 +113,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     SessionRegistryImpl sessionRegistry() {
+
         return new SessionRegistryImpl();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.authorizeRequests()
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public <O extends FilterSecurityInterceptor> O postProcess(O object) {
+
                         object.setAccessDecisionManager(customUrlDecisionManager);
                         object.setSecurityMetadataSource(customFilterInvocationSecurityMetadataSource);
                         return object;

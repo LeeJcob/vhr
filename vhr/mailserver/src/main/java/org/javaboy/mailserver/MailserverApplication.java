@@ -10,11 +10,13 @@ import org.springframework.context.annotation.Bean;
 public class MailserverApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(MailserverApplication.class, args);
     }
 
     @Bean
     Queue queue() {
+
         return new Queue(MailConstants.MAIL_QUEUE_NAME);
     }
 }

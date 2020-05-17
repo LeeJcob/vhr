@@ -16,14 +16,18 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitConfig {
+
     public final static Logger logger = LoggerFactory.getLogger(RabbitConfig.class);
+
     @Autowired
     CachingConnectionFactory cachingConnectionFactory;
+
     @Autowired
     MailSendLogService mailSendLogService;
 
     @Bean
     RabbitTemplate rabbitTemplate() {
+
         RabbitTemplate rabbitTemplate = new RabbitTemplate(cachingConnectionFactory);
         rabbitTemplate.setConfirmCallback((data, ack, cause) -> {
             String msgId = data.getId();
@@ -42,16 +46,19 @@ public class RabbitConfig {
 
     @Bean
     Queue mailQueue() {
+
         return new Queue(MailConstants.MAIL_QUEUE_NAME, true);
     }
 
     @Bean
     DirectExchange mailExchange() {
+
         return new DirectExchange(MailConstants.MAIL_EXCHANGE_NAME, true, false);
     }
 
     @Bean
     Binding mailBinding() {
+
         return BindingBuilder.bind(mailQueue()).to(mailExchange()).with(MailConstants.MAIL_ROUTING_KEY_NAME);
     }
 

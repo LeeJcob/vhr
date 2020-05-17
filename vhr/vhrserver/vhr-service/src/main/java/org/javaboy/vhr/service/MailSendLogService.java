@@ -10,21 +10,27 @@ import java.util.List;
 
 @Service
 public class MailSendLogService {
+
     @Autowired
     MailSendLogMapper mailSendLogMapper;
+
     public Integer updateMailSendLogStatus(String msgId, Integer status) {
+
         return mailSendLogMapper.updateMailSendLogStatus(msgId, status);
     }
 
     public Integer insert(MailSendLog mailSendLog) {
+
         return mailSendLogMapper.insert(mailSendLog);
     }
 
     public List<MailSendLog> getMailSendLogsByStatus() {
+
         return mailSendLogMapper.getMailSendLogsByStatus();
     }
 
     public Integer updateCount(String msgId, Date date) {
-        return mailSendLogMapper.updateCount(msgId,date);
+
+        return mailSendLogMapper.updateCount(msgId, date);
     }
 }

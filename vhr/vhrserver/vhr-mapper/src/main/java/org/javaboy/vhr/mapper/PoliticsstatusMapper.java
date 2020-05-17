@@ -5,6 +5,7 @@ import org.javaboy.vhr.model.Politicsstatus;
 import java.util.List;
 
 public interface PoliticsstatusMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Politicsstatus record);

@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
@@ -34,11 +38,13 @@ public class HrInfoController {
 
     @GetMapping("/hr/info")
     public Hr getCurrentHr(Authentication authentication) {
+
         return ((Hr) authentication.getPrincipal());
     }
 
     @PutMapping("/hr/info")
     public RespBean updateHr(@RequestBody Hr hr, Authentication authentication) {
+
         if (hrService.updateHr(hr) == 1) {
             SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(hr, authentication.getCredentials(), authentication.getAuthorities()));
             return RespBean.ok("更新成功!");
@@ -48,6 +54,7 @@ public class HrInfoController {
 
     @PutMapping("/hr/pass")
     public RespBean updateHrPasswd(@RequestBody Map<String, Object> info) {
+
         String oldpass = (String) info.get("oldpass");
         String pass = (String) info.get("pass");
         Integer hrid = (Integer) info.get("hrid");
@@ -58,7 +65,8 @@ public class HrInfoController {
     }
 
     @PostMapping("/hr/userface")
-    public RespBean updateHrUserface(MultipartFile file, Integer id,Authentication authentication) {
+    public RespBean updateHrUserface(MultipartFile file, Integer id, Authentication authentication) {
+
         String fileId = FastDFSUtils.upload(file);
         String url = nginxHost + fileId;
         if (hrService.updateUserface(url, id) == 1) {

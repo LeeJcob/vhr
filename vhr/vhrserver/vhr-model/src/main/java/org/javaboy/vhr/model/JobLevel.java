@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Objects;
 
 public class JobLevel implements Serializable {
+
     private Integer id;
 
     private String name;
@@ -15,6 +16,7 @@ public class JobLevel implements Serializable {
 
     @Override
     public boolean equals(Object o) {
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         JobLevel jobLevel = (JobLevel) o;
@@ -36,48 +38,58 @@ public class JobLevel implements Serializable {
         this.name = name;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
     private Date createDate;
 
     private Boolean enabled;
 
     public Integer getId() {
+
         return id;
     }
 
     public void setId(Integer id) {
+
         this.id = id;
     }
 
     public String getName() {
+
         return name;
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
     public String getTitleLevel() {
+
         return titleLevel;
     }
 
     public void setTitleLevel(String titleLevel) {
+
         this.titleLevel = titleLevel;
     }
 
     public Date getCreateDate() {
+
         return createDate;
     }
 
     public void setCreateDate(Date createDate) {
+
         this.createDate = createDate;
     }
 
     public Boolean getEnabled() {
+
         return enabled;
     }
 
     public void setEnabled(Boolean enabled) {
+
         this.enabled = enabled;
     }
 }

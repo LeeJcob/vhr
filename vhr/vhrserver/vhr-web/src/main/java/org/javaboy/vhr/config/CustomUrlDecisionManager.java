@@ -22,14 +22,16 @@ import java.util.Collection;
  */
 @Component
 public class CustomUrlDecisionManager implements AccessDecisionManager {
+
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
+
         for (ConfigAttribute configAttribute : configAttributes) {
             String needRole = configAttribute.getAttribute();
             if ("ROLE_LOGIN".equals(needRole)) {
                 if (authentication instanceof AnonymousAuthenticationToken) {
                     throw new AccessDeniedException("尚未登录，请登录!");
-                }else {
+                } else {
                     return;
                 }
             }
@@ -45,11 +47,13 @@ public class CustomUrlDecisionManager implements AccessDecisionManager {
 
     @Override
     public boolean supports(ConfigAttribute attribute) {
+
         return true;
     }
 
     @Override
     public boolean supports(Class<?> clazz) {
+
         return true;
     }
 }

@@ -39,15 +39,19 @@ public class MailReceiver {
 
     @Autowired
     JavaMailSender javaMailSender;
+
     @Autowired
     MailProperties mailProperties;
+
     @Autowired
     TemplateEngine templateEngine;
+
     @Autowired
     StringRedisTemplate redisTemplate;
 
     @RabbitListener(queues = MailConstants.MAIL_QUEUE_NAME)
     public void handler(Message message, Channel channel) throws IOException {
+
         Employee employee = (Employee) message.getPayload();
         MessageHeaders headers = message.getHeaders();
         Long tag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);

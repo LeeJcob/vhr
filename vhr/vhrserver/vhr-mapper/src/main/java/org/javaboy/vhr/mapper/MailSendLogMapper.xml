@@ -11,7 +11,10 @@
     </insert>
 
     <select id="getMailSendLogsByStatus" resultType="org.javaboy.vhr.model.MailSendLog">
-        select * from mail_send_log where status=0 and tryTime &lt; sysdate()
+        select *
+        from mail_send_log
+        where status = 0
+          and tryTime &lt; sysdate()
     </select>
     <update id="updateCount">
         update mail_send_log set count=count+1,updateTime=#{date} where msgId=#{msgId};

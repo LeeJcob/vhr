@@ -2,16 +2,24 @@ package org.javaboy.vhr.utils;
 
 import org.apache.poi.hpsf.DocumentSummaryInformation;
 import org.apache.poi.hpsf.SummaryInformation;
-import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.javaboy.vhr.model.*;
-import org.springframework.context.support.BeanDefinitionDslKt;
+import org.javaboy.vhr.model.Department;
+import org.javaboy.vhr.model.Employee;
+import org.javaboy.vhr.model.JobLevel;
+import org.javaboy.vhr.model.Nation;
+import org.javaboy.vhr.model.Politicsstatus;
+import org.javaboy.vhr.model.Position;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
@@ -227,6 +235,7 @@ public class POIUtils {
      * @return
      */
     public static List<Employee> excel2Employee(MultipartFile file, List<Nation> allNations, List<Politicsstatus> allPoliticsstatus, List<Department> allDepartments, List<Position> allPositions, List<JobLevel> allJobLevels) {
+
         List<Employee> list = new ArrayList<>();
         Employee employee = null;
         try {

@@ -18,9 +18,12 @@ import java.util.List;
  */
 @Service
 public class NationService {
+
     @Autowired
     NationMapper nationMapper;
+
     public List<Nation> getAllNations() {
+
         return nationMapper.getAllNations();
     }
 }

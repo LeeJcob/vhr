@@ -5,6 +5,7 @@ import org.javaboy.vhr.model.Salary;
 import java.util.List;
 
 public interface SalaryMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Salary record);

@@ -6,6 +6,7 @@ import org.javaboy.vhr.model.Position;
 import java.util.List;
 
 public interface PositionMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Position record);

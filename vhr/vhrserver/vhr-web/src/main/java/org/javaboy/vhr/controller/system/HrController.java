@@ -6,7 +6,13 @@ import org.javaboy.vhr.model.Role;
 import org.javaboy.vhr.service.HrService;
 import org.javaboy.vhr.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -22,29 +28,37 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/hr")
 public class HrController {
+
     @Autowired
     HrService hrService;
+
     @Autowired
     RoleService roleService;
+
     @GetMapping("/")
     public List<Hr> getAllHrs(String keywords) {
+
         return hrService.getAllHrs(keywords);
     }
 
     @PutMapping("/")
     public RespBean updateHr(@RequestBody Hr hr) {
+
         if (hrService.updateHr(hr) == 1) {
             return RespBean.ok("更新成功!");
         }
         return RespBean.error("更新失败!");
     }
+
     @GetMapping("/roles")
     public List<Role> getAllRoles() {
+
         return roleService.getAllRoles();
     }
 
     @PutMapping("/role")
     public RespBean updateHrRole(Integer hrid, Integer[] rids) {
+
         if (hrService.updateHrRole(hrid, rids)) {
             return RespBean.ok("更新成功!");
         }
@@ -53,6 +67,7 @@ public class HrController {
 
     @DeleteMapping("/{id}")
     public RespBean deleteHrById(@PathVariable Integer id) {
+
         if (hrService.deleteHrById(id) == 1) {
             return RespBean.ok("删除成功!");
         }

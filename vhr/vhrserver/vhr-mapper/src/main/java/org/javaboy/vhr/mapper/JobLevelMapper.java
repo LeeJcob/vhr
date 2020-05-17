@@ -6,6 +6,7 @@ import org.javaboy.vhr.model.JobLevel;
 import java.util.List;
 
 public interface JobLevelMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(JobLevel record);

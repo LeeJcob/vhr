@@ -22,16 +22,20 @@ import java.util.List;
  * @博客 http://wangsong.blog.csdn.net
  * @网站 http://www.javaboy.org
  * @时间 2019-09-29 7:37
- *
+ * <p>
  * 这个类的作用，主要是根据用户传来的请求地址，分析出请求需要的角色
  */
 @Component
 public class CustomFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
+
     @Autowired
     MenuService menuService;
+
     AntPathMatcher antPathMatcher = new AntPathMatcher();
+
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
+
         String requestUrl = ((FilterInvocation) object).getRequestUrl();
         List<Menu> menus = menuService.getAllMenusWithRole();
         for (Menu menu : menus) {
@@ -49,11 +53,13 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
 
     @Override
     public Collection<ConfigAttribute> getAllConfigAttributes() {
+
         return null;
     }
 
     @Override
     public boolean supports(Class<?> clazz) {
+
         return true;
     }
 }

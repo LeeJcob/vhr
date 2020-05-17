@@ -7,6 +7,7 @@ import org.javaboy.vhr.model.Role;
 import java.util.List;
 
 public interface HrMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Hr record);

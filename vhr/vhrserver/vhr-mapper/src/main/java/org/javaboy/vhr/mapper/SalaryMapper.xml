@@ -18,9 +18,21 @@
         <result column="name" property="name" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, basicSalary, bonus, lunchSalary, trafficSalary, allSalary, pensionBase, pensionPer, 
-    createDate, medicalBase, medicalPer, accumulationFundBase, accumulationFundPer, name
-  </sql>
+            id,
+            basicSalary,
+            bonus,
+            lunchSalary,
+            trafficSalary,
+            allSalary,
+            pensionBase,
+            pensionPer,
+            createDate,
+            medicalBase,
+            medicalPer,
+            accumulationFundBase,
+            accumulationFundPer,
+            name
+    </sql>
     <select id="getAllSalaries" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -33,21 +45,21 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from salary
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+        delete from salary
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="org.javaboy.vhr.model.Salary">
-    insert into salary (id, basicSalary, bonus, 
-      lunchSalary, trafficSalary, allSalary, 
-      pensionBase, pensionPer, createDate, 
-      medicalBase, medicalPer, accumulationFundBase, 
-      accumulationFundPer, name)
-    values (#{id,jdbcType=INTEGER}, #{basicSalary,jdbcType=INTEGER}, #{bonus,jdbcType=INTEGER}, 
-      #{lunchSalary,jdbcType=INTEGER}, #{trafficSalary,jdbcType=INTEGER}, #{allSalary,jdbcType=INTEGER}, 
-      #{pensionBase,jdbcType=INTEGER}, #{pensionPer,jdbcType=REAL}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{medicalBase,jdbcType=INTEGER}, #{medicalPer,jdbcType=REAL}, #{accumulationFundBase,jdbcType=INTEGER}, 
-      #{accumulationFundPer,jdbcType=REAL}, #{name,jdbcType=VARCHAR})
-  </insert>
+        insert into salary (id, basicSalary, bonus,
+        lunchSalary, trafficSalary, allSalary,
+        pensionBase, pensionPer, createDate,
+        medicalBase, medicalPer, accumulationFundBase,
+        accumulationFundPer, name)
+        values (#{id,jdbcType=INTEGER}, #{basicSalary,jdbcType=INTEGER}, #{bonus,jdbcType=INTEGER},
+        #{lunchSalary,jdbcType=INTEGER}, #{trafficSalary,jdbcType=INTEGER}, #{allSalary,jdbcType=INTEGER},
+        #{pensionBase,jdbcType=INTEGER}, #{pensionPer,jdbcType=REAL}, #{createDate,jdbcType=TIMESTAMP},
+        #{medicalBase,jdbcType=INTEGER}, #{medicalPer,jdbcType=REAL}, #{accumulationFundBase,jdbcType=INTEGER},
+        #{accumulationFundPer,jdbcType=REAL}, #{name,jdbcType=VARCHAR})
+    </insert>
     <insert id="insertSelective" parameterType="org.javaboy.vhr.model.Salary">
         insert into salary
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -185,20 +197,20 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="org.javaboy.vhr.model.Salary">
-    update salary
-    set basicSalary = #{basicSalary,jdbcType=INTEGER},
-      bonus = #{bonus,jdbcType=INTEGER},
-      lunchSalary = #{lunchSalary,jdbcType=INTEGER},
-      trafficSalary = #{trafficSalary,jdbcType=INTEGER},
-      allSalary = #{allSalary,jdbcType=INTEGER},
-      pensionBase = #{pensionBase,jdbcType=INTEGER},
-      pensionPer = #{pensionPer,jdbcType=REAL},
-      createDate = #{createDate,jdbcType=TIMESTAMP},
-      medicalBase = #{medicalBase,jdbcType=INTEGER},
-      medicalPer = #{medicalPer,jdbcType=REAL},
-      accumulationFundBase = #{accumulationFundBase,jdbcType=INTEGER},
-      accumulationFundPer = #{accumulationFundPer,jdbcType=REAL},
-      name = #{name,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update salary
+        set basicSalary = #{basicSalary,jdbcType=INTEGER},
+        bonus = #{bonus,jdbcType=INTEGER},
+        lunchSalary = #{lunchSalary,jdbcType=INTEGER},
+        trafficSalary = #{trafficSalary,jdbcType=INTEGER},
+        allSalary = #{allSalary,jdbcType=INTEGER},
+        pensionBase = #{pensionBase,jdbcType=INTEGER},
+        pensionPer = #{pensionPer,jdbcType=REAL},
+        createDate = #{createDate,jdbcType=TIMESTAMP},
+        medicalBase = #{medicalBase,jdbcType=INTEGER},
+        medicalPer = #{medicalPer,jdbcType=REAL},
+        accumulationFundBase = #{accumulationFundBase,jdbcType=INTEGER},
+        accumulationFundPer = #{accumulationFundPer,jdbcType=REAL},
+        name = #{name,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

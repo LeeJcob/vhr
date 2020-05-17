@@ -19,6 +19,7 @@ import java.io.IOException;
  * @时间 2020-03-02 23:26
  */
 public class FastDFSUtils {
+
     private static StorageClient1 client1;
 
     static {
@@ -35,6 +36,7 @@ public class FastDFSUtils {
     }
 
     public static String upload(MultipartFile file) {
+
         String oldName = file.getOriginalFilename();
         try {
             return client1.upload_file1(file.getBytes(), oldName.substring(oldName.lastIndexOf(".") + 1), null);
