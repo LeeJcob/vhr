@@ -15,6 +15,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
  * @博客 http://wangsong.blog.csdn.net
  * @网站 http://www.javaboy.org
  * @时间 2019-10-01 16:53
+ * 全局异常处理
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {

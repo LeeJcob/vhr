@@ -49,15 +49,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     CustomUrlDecisionManager customUrlDecisionManager;
 
+    /**
+     * 密码加密器
+     */
     @Bean
     PasswordEncoder passwordEncoder() {
-
+        /**
+         * BCryptPasswordEncoder：相同的密码明文每次生成的密文都不同，安全性更高
+         */
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 用户认证配置
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
+        /**
+         * 指定用户认证时，默认从哪里获取认证用户信息
+         */
         auth.userDetailsService(hrService);
     }
 
@@ -117,6 +128,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new SessionRegistryImpl();
     }
 
+    /**
+     * Http安全配置
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
